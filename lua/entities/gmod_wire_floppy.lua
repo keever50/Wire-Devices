@@ -16,21 +16,23 @@ function ENT:Initialize()
 	--self:SetMaterial( "aeralius/floppy_3-5", false )
 	
 	--defaults
-	self.properties = { --
-		sectors = 1000,
-		sectorsize = 512, --bytes
-		tracks = 10,
-	}
-	self.properties.tracks = math.ceil( self.properties.sectors / 100 )
-	self.properties.sectors_per_track = self.properties.sectors/self.properties.tracks
+	
+	--self.properties = { --
+	--	sectors = 1000,
+	--	sectorsize = 512, --bytes
+	--	tracks = 10,
+	--}
+	--self.properties.tracks = math.ceil( self.properties.sectors / 100 )
+	--self.properties.sectors_per_track = self.properties.sectors/self.properties.tracks
 	--PrintTable(self.properties)
 	
 end
 
 function ENT:Setup( label, writeprotection, colorr, colorg, colorb, hasauthor, authorname, sectors, dupes )
 	--dims
+	self.properties = {}
 	self.sectors = sectors
-	self.properties.sectors = self.sectors
+	self.properties.sectors = sectors
 	self.properties.tracks = math.ceil( self.properties.sectors / 100 )
 	self.properties.sectors_per_track = self.properties.sectors/self.properties.tracks	
 	
@@ -93,6 +95,7 @@ function ENT:BuildDupeInfo()
 	info.memory = self.memory
 	info.permaauthor = self.permaauthor
 	info.dupes = self.dupes 
+	--info.sectors = self.sectors
 	return info
 end
 
@@ -101,7 +104,8 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 	self.permaauthor = info.permaauthor
 	self.dupes = info.dupes
 	self.DupeDone = true
+	--self.sectors = info.sectors
 end
 
-duplicator.RegisterEntityClass( "gmod_wire_floppy", WireLib.MakeWireEnt, "Data", "label", "writeprotection", "colorg", "colorg", "colorb")
+duplicator.RegisterEntityClass( "gmod_wire_floppy", WireLib.MakeWireEnt, "Data", "label", "writeprotection", "colorg", "colorg", "colorb", "hasauthor", "authorname", "sectors", "dupes")
 
