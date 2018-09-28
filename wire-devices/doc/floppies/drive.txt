@@ -1,0 +1,30 @@
+Hispeed:
+	0: Contains floppy? (R) 
+	1: Write Protection? (R)
+	2: Lock(R/W) Locks the floppy in place. You dont have to set value but it prevents people from stealing your floppy. Usefull to prevent corruption.
+	3: Force Eject(W) Ejects the floppy, so you dont have to do it yourself. Lazy, but cool.
+	4: Motor(R/W) This should be turned on when operating a floppy. Turn it off when you dont want constant floppy noise.
+	5: Sector(R/W) This will move the head and target to the inserted value. When bieng read, it will return it's current target.
+	6: Read(W) Reads specific sector to buffer.
+	7: Write(W) Writes buffer to specific sector.
+	8: Status(R/W) Listed below.
+	9: Error(R/W) Listed below. You can write this for custom errors and to set it back to 0. It wont reset itself.
+	10: Reset(W) Sets every value to default.
+	512-1024: Buffer(R/W) All values between are bieng written or are the result of a read operation. NOTE: This will be automatically erased on R/W operations.
+
+Drive statuses:
+	0 = off / not ready for operation.
+	1 = no floppy.
+	2 = ready. Also means the previous operation is finished.
+	3 = busy.
+
+Drive errors:
+	0 = none ( its all ok. No need to worry )
+	1 = forced floppy removal. ( floppy got physically removed or deleted )
+	2 = motor not spinning. ( the motor has to be running before you use the floppy )
+	3 = sector not found ( this usually means your sector is way over its limit or below 0 which shouln't make sense at first place. )
+
+Drive speed:
+Drive speed depends on where the sector is located.
+This means when the sector is close to the center of the disk, it will take longer to move the head.
+Tracks and cyclinders are not a wire option because it would make it too complex for wiremod. Wiremod is about fun and not giving headaches.

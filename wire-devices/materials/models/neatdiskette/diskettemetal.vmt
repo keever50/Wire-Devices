@@ -1,0 +1,17 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/neatdiskette/diskettemetal.vtf"
+	"$model" "1"
+	"$surfaceprop" "metal"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[0.1 0.1 0.1]"
+	"$blendtintbybasealpha" "1"
+	
+	"$HalfLambert" "1"
+    
+	"$phong" "1"
+	"$phongboost" "0.15"
+	"$phongexponent" "5"
+	"$phongfresnelranges"	"[.25 1 4]"
+	
+}
