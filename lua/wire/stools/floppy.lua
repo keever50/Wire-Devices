@@ -50,7 +50,7 @@ if CLIENT then
 		panel:Help("#Tool.wire_floppy.authorinfo")
 		panel:CheckBox("#Tool.wire_floppy.writeprotection", "wire_floppy_writeprotection")
 		--panel:CheckBox("#Tool.wire_floppy.hasauthor", "wire_floppy_hasauthor") --we dont really need this, so it remains unused.
-		panel:NumSlider("#Tool.wire_floppy.sectors", "wire_floppy_sectors", 0, 2000, 0)
+		panel:NumSlider("#Tool.wire_floppy.sectors", "wire_floppy_sectors", 1, 2048, 1)
 		
 
 		

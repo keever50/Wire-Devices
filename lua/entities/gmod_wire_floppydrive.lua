@@ -319,6 +319,10 @@ function ENT:WriteCell( Address, value )
 
 end
 
+function ENT:BuildDupeInfo()
+
+end
+
 
 duplicator.RegisterEntityClass( "gmod_wire_floppydrive", WireLib.MakeWireEnt, "Data")
 
