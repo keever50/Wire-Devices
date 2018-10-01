@@ -241,7 +241,7 @@ end
 
 function ENT:ReadCell( Address )
 	if Address >= 512 and self:CheckHasFloppy() then
-		return self.buffer[Address-512]
+		return self.buffer[Address-511]
 	else
 		--Contains floppy?
 		if Address == 0 then 
@@ -271,7 +271,7 @@ end
 
 function ENT:WriteCell( Address, value )
 	if Address >= 512 and self:CheckHasFloppy() then 
-		self.buffer[Address-512] = value
+		self.buffer[Address-511] = value
 	end
 		--Lock
 	if Address == 2 then
