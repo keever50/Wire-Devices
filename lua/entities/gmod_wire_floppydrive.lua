@@ -30,6 +30,8 @@ function ENT:Initialize()
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
 
+	self.timecreated = SysTime()
+	
 	--wires
 	self.Outputs = Wire_CreateOutputs(self, { "Memory" })
 	
@@ -190,7 +192,7 @@ function ENT:GotoSector( Sect )
 			self.headsound:ChangePitch(200,0)
 			self.headsound:ChangeVolume(0.1,0)
 			self.headsoundstop:Stop()
-			timer.Create("wire.floppydrive.headmovement", delay, 1, function( )
+			timer.Create("wire.floppydrive.headmovement".. self.timecreated, delay, 1, function( )
 	
 				self.ctrack = targettrack
 				self.csector = Sect
@@ -218,7 +220,7 @@ end
 function ENT:Read( )
 	local floppy = self.thefloppy
 	self.status = 3
-	timer.Create("wire.floppydrive.latency.read", self.latancy, 1, function( )
+	timer.Create("wire.floppydrive.latency.read" .. self.timecreated, self.latancy, 1, function( )
 		self.buffer = floppy.memory.sector[self.csector]
 		self.status = 2
 	end)
@@ -227,7 +229,7 @@ end
 function ENT:Write( )
 	local floppy = self.thefloppy
 	self.status = 3
-	timer.Create("wire.floppydrive.latency.write", self.latancy, 1, function( )
+	timer.Create("wire.floppydrive.latency.write" .. self.timecreated, self.latancy, 1, function( )
 		local data = {}
 		for i=1,512,1 do  --Limitter
 			data[i] = self.buffer[i]
@@ -303,7 +305,7 @@ function ENT:WriteCell( Address, value )
 			self.motor = 0
 			if self.motorsound:IsPlaying() then
 				self.motorsound:ChangePitch(0,0.5)
-				timer.Create("floppydrive.motorsoundstop", 0.7, 1, function( )
+				timer.Create("floppydrive.motorsoundstop" .. self.timecreated, 0.7, 1, function( )
 					self.motorsound:Stop()
 				end)
 			end
