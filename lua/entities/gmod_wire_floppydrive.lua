@@ -222,7 +222,7 @@ function ENT:Read( )
 	self.status = 3
 	timer.Create("wire.floppydrive.latency.read" .. self.timecreated, self.latancy, 1, function( )
 		self.buffer = floppy.memory.sector[self.csector]
-		self.status = 2
+		if self.status == 3 then self.status = 2 end 
 	end)
 end
 
@@ -235,7 +235,7 @@ function ENT:Write( )
 			data[i] = self.buffer[i]
 		end
 		floppy.memory.sector[self.csector] = data
-		self.status = 2
+		if self.status == 3 then self.status = 2 end 
 	end)
 end
 
