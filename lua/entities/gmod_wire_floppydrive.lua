@@ -329,4 +329,3 @@ end
 
 
 duplicator.RegisterEntityClass( "gmod_wire_floppydrive", WireLib.MakeWireEnt, "Data")
-
