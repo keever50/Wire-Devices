@@ -242,8 +242,8 @@ end
 --hi speed communication
 
 function ENT:ReadCell( Address )
-	if Address >= 511 and self:CheckHasFloppy() then
-		return self.buffer[Address-512]
+	if Address >= 512 and self:CheckHasFloppy() then
+		return self.buffer[Address-511]
 	else
 		--Contains floppy?
 		if Address == 0 then 
@@ -267,13 +267,15 @@ function ENT:ReadCell( Address )
 			return self.status
 		elseif Address == 11 and self:CheckHasFloppy() then
 			return self.thefloppy.properties.sectors
+		elseif Address == 511 then 
+			return 100
 		end
 	end
 end
 
 function ENT:WriteCell( Address, value )
-	if Address >= 511 and self:CheckHasFloppy() then 
-		self.buffer[Address-512] = value
+	if Address >= 512 and self:CheckHasFloppy() then 
+		self.buffer[Address-511] = value
 	end
 		--Lock
 	if Address == 2 then
