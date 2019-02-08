@@ -267,7 +267,7 @@ function ENT:ReadCell( Address )
 			return self.status
 		elseif Address == 11 and self:CheckHasFloppy() then
 			return self.thefloppy.properties.sectors
-		elseif Address == 511 then 
+		elseif Address == 510 then 
 			return 100
 		end
 	end

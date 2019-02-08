@@ -15,7 +15,7 @@ Hispeed:
 	9: Error(R/W) Listed below. You can write this for custom errors and to set it back to 0. It wont reset itself.
 	10: Reset(W) Sets every value to default.
 	11: Sectors(R) How many sectors on the floppy?
-	511: Device ID(R) Returns 100, which is standardized( in this pack ) for Floppy Drive.
+	510: Device ID(R) Returns 100, which is standardized( in this pack ) for Floppy Drive.
 	512-1024: Buffer(R/W) All values between are bieng written or are the result of a read operation. NOTE: This will be automatically erased on R/W operations.
 
 Drive statuses:
