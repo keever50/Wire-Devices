@@ -186,9 +186,11 @@ function ENT:GotoSector( Sect )
 		local targettrack = math.ceil( Sect / floppy.properties.sectors_per_track )
 		local trackstomove = math.abs( self.ctrack - targettrack )
 		local delay = (self.headspeed/floppy.properties.tracks)*trackstomove
-		if trackstomove > 0 then
+		if trackstomove >= 0 then
 			self.status = 3
-			self.headsound:Play()
+			if trackstomove > 0 then
+				self.headsound:Play()
+			end
 			self.headsound:ChangePitch(200,0)
 			self.headsound:ChangeVolume(0.1,0)
 			self.headsoundstop:Stop()
